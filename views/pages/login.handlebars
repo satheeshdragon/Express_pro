@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="row h-100">
+        <div class="col-12 col-md-10 mx-auto my-auto">
+            <div class="card auth-card">
+                <div class="position-relative image-side">
+                    <p class="text-white h2">MAGIC IS IN THE DETAILS</p>
+                    <p class="white mb-0">Please use your credentials to login.<br>If you are not a member, please <a href="#" class="white">register</a>.</p>
+                </div>
+                <div class="form-side"><a href="Dashboard.Default.html"><span class="logo-single"></span></a>
+                    <h6 class="mb-4">Login</h6>
+                    <form>
+                        <label class="form-group has-float-label mb-4"><input class="form-control email" name="email"> <span>E-mail</span></label> 
+                        <label class="form-group has-float-label mb-4"><input class="form-control password" name="password" type="password" placeholder=""> <span>Password</span></label>
+                        <div class="d-flex justify-content-between align-items-center"><a href="#">Forget password?</a> 
+                        <button class="btn btn-primary btn-lg btn-shadow submit" type="button">LOGIN</button></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+$(function(){
+    //alert();
+});
+
+var getUrl = window.location;
+var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+
+$(document).on('click','.submit',function(){
+     $.ajax({
+       type: "POST",
+       url: "/users/auth",
+       data: {
+        email: $('.email').val(),
+        password: $('.password').val(),
+       },
+       cache: true,
+       async: false,
+       success: function(data){
+        // console.log(data.result);
+        if(data){
+             window.location.href = baseUrl+"dashboard";
+            $('.email').css('border-color','green');
+            $('.password').css('border-color','green');
+        }else{
+            $('.email').css('border-color','red');
+            $('.password').css('border-color','red');
+        }
+       }
+     });
+});
+</script>

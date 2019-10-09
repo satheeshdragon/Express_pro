@@ -1,0 +1,8 @@
+
+1.npm install -g express-generator
+2.npm install
+3.DEBUG=myapp:* npm start
+4.npm install express-handlebars
+5.npm install body-parser --save
+6.npm install --save express-session
+7.npm install nodemon -g
